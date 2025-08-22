@@ -11,8 +11,8 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "lint:strict": "next lint '*/**/*.{js,jsx,ts,tsx}'",
-    "format": "prettier --check */**/*.{js,jsx,json,ts,tsx,scss,css,md}",
-    "format:fix": "prettier --write */**/*.{js,jsx,json,ts,tsx,scss,css,md}",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
     "commit": "cz",
     "prepare": "husky"
   },

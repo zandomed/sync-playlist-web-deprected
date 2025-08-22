@@ -6,23 +6,26 @@ Sync your playlist across platforms
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm or yarn
 
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
 cd sync-playlist-web
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Run the development server:
+
 ```bash
 npm run dev
 ```
@@ -44,6 +47,7 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 This project uses conventional commits. Use `npm run commit` to create properly formatted commit messages.
 
 ### Commit Types
+
 - `feat:` - New features
 - `fix:` - Bug fixes
 - `docs:` - Documentation changes
