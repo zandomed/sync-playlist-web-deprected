@@ -5,6 +5,8 @@
     "titleBar.activeForeground": "#ffffff",
     "titleBar.inactiveForeground": "#ffffff"
   },
+  "prettier.endOfLine": "lf",
+  "files.eol": "\n",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
