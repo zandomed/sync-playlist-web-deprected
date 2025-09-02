@@ -13,13 +13,6 @@ import { auth } from '@/lib/auth';
 import Footer from '@/presentation/components/footer';
 import Header from '@/presentation/components/header';
 import { Button } from '@/presentation/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardTitle,
-} from '@/presentation/components/ui/card';
 
 export default async function Home() {
   const session = await auth.api.getSession({
@@ -86,64 +79,8 @@ export default async function Home() {
               </div>
             </div>
           </section>
-
-          {/* Features Section */}
-          <section
-            id="features"
-            className="bg-gray-50 px-4 py-20 sm:px-6 lg:px-8"
-          >
-            <div className="mx-auto max-w-7xl">
-              <div className="mb-16 text-center">
-                <h3 className="mb-6 text-4xl font-bold md:text-4xl">
-                  Connect your streaming services
-                </h3>
-                <p className="text-muted-foreground mx-auto max-w-3xl text-xl">
-                  Made for how you actually listen to music. From casual
-                  listeners to serious audiophiles, PlaylistSync adapts to your
-                  music habits — not the other way around.
-                </p>
-              </div>
-
-              <div className="mb-20 grid grid-cols-1 gap-8 md:grid-cols-2">
-                <Card className="group hover:border-primary border-2 p-8 transition-all hover:shadow-lg">
-                  <CardContent className="flex flex-col items-center p-0">
-                    <div className="mb-6 flex h-15 w-15 items-center justify-center rounded-lg bg-white transition-transform group-hover:scale-110">
-                      <SiSpotify className="text-spotify-primary h-10 w-10"></SiSpotify>
-                    </div>
-                    <CardTitle className="mb-4 text-xl">Spotify</CardTitle>
-                    <CardDescription>
-                      Connect your Spotify account
-                    </CardDescription>
-                  </CardContent>
-                  <CardFooter>
-                    <Button variant="outline" className="w-full text-base">
-                      Connect
-                      <ArrowRight className="ml-1 h-3 w-3 transition-transform group-hover:translate-x-1" />
-                    </Button>
-                  </CardFooter>
-                </Card>
-                <Card className="group hover:border-primary border-2 p-8 transition-all hover:shadow-lg">
-                  <CardContent className="flex flex-col items-center p-0">
-                    <div className="mb-6 flex h-15 w-15 items-center justify-center rounded-lg bg-white transition-transform group-hover:scale-110">
-                      <SiApplemusic className="text-apple-music-primary h-10 w-10"></SiApplemusic>
-                    </div>
-                    <CardTitle className="mb-4 text-xl">Apple Music</CardTitle>
-                    <CardDescription>
-                      Connect your Apple Music account
-                    </CardDescription>
-                  </CardContent>
-                  <CardFooter>
-                    <Button variant="outline" className="w-full text-base">
-                      Connect
-                      <ArrowRight className="ml-1 h-3 w-3 transition-transform group-hover:translate-x-1" />
-                    </Button>
-                  </CardFooter>
-                </Card>
-              </div>
-            </div>
-          </section>
           {/* How it works */}
-          <section className="px-4 py-16">
+          <section className="bg-gray-50 px-4 py-16">
             <div className="container mx-auto max-w-4xl">
               <h3 className="text-foreground mb-12 text-center text-3xl font-bold">
                 How it works

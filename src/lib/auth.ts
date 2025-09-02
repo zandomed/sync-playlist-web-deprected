@@ -11,7 +11,8 @@ export const auth = betterAuth({
   plugins: [nextCookies()],
   emailAndPassword: {
     enabled: true,
-    autoSignIn: false,
+    autoSignIn: true,
+    requireEmailVerification: false,
   },
   socialProviders: {
     google: {
