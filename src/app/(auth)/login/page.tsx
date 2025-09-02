@@ -8,6 +8,7 @@ import { ArrowLeft } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import { authClient } from '@/lib/auth-client';
 import { Button } from '@/presentation/components/ui/button';
 import { Checkbox } from '@/presentation/components/ui/checkbox';
 import {
@@ -43,6 +44,14 @@ export default function SignInPage() {
     console.log(data);
   };
 
+  const handleLoginWithGoogle = async () => {
+    const data = await authClient.signIn.social({
+      provider: 'google',
+    });
+
+    console.log(data);
+  };
+
   return (
     <div className="flex h-dvh flex-row items-center justify-center md:items-start">
       <div className="flex items-center justify-center bg-white md:h-full">
@@ -50,30 +59,11 @@ export default function SignInPage() {
           <div className="rounded-lg border border-gray-200 bg-white p-8 shadow-sm">
             {/* Header with tabs and close button */}
             <div className="mb-8 flex items-center justify-between">
-              {/* <div className="relative flex rounded-lg border border-gray-200 p-1">
-                <div
-                  className={`bg-primary absolute top-1 bottom-1 rounded-md transition-all duration-300 ease-in-out ${
-                    isSignUp ? 'right-1/2 left-1' : 'right-1 left-1/2'
-                  }`}
-                />
-                <button
-                  onClick={() => handleChangeTab(AuthFormTabOption.SIGN_UP)}
-                  data-selected={isSelectedTab(AuthFormTabOption.SIGN_UP)}
-                  className="relative z-10 rounded-md px-6 py-2 text-sm font-medium text-gray-600 transition-all duration-200 not-data-selected:cursor-pointer not-data-selected:hover:text-black data-selected:text-white"
-                >
-                  Sign up
-                </button>
-                <button
-                  onClick={() => handleChangeTab(AuthFormTabOption.SIGN_IN)}
-                  data-selected={isSelectedTab(AuthFormTabOption.SIGN_IN)}
-                  className="relative z-10 rounded-md px-6 py-2 text-sm font-medium text-gray-600 transition-all duration-200 not-data-selected:cursor-pointer not-data-selected:hover:text-black data-selected:text-white"
-                >
-                  Sign in
-                </button>
-              </div> */}
-              <Button variant="outline" size="lg" onClick={() => {}}>
-                <ArrowLeft />
-              </Button>
+              <Link href="/">
+                <Button variant="outline" size="lg">
+                  <ArrowLeft />
+                </Button>
+              </Link>
             </div>
 
             <h1 className="mb-8 text-3xl font-normal text-black">
@@ -184,7 +174,7 @@ export default function SignInPage() {
                 variant="outline"
                 size="lg"
                 className="flex items-center justify-center"
-                onClick={() => {}}
+                onClick={handleLoginWithGoogle}
               >
                 <SiGoogle />
               </Button>

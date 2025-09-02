@@ -1,5 +1,5 @@
-'use client';
-import { useState, useEffect } from 'react';
+import { headers } from 'next/headers';
+import Link from 'next/link';
 
 import {
   SiApplemusic,
@@ -9,6 +9,7 @@ import {
 } from '@icons-pack/react-simple-icons';
 import { ArrowRight } from 'lucide-react';
 
+import { auth } from '@/lib/auth';
 import Footer from '@/presentation/components/footer';
 import Header from '@/presentation/components/header';
 import { Button } from '@/presentation/components/ui/button';
@@ -20,12 +21,10 @@ import {
   CardTitle,
 } from '@/presentation/components/ui/card';
 
-export default function Home() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
+export default async function Home() {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
   return (
     <>
@@ -33,11 +32,9 @@ export default function Home() {
       <main>
         <div className="bg-background min-h-screen">
           {/* Hero Section */}
-          <section className="flex items-center px-4 pt-32 pb-20 sm:px-6 lg:px-8">
+          <section className="flex items-center px-4 pt-50 pb-20 sm:px-6 lg:px-8">
             <div className="mx-auto flex min-h-full max-w-7xl flex-col items-center justify-center gap-y-10 text-center">
-              <div
-                className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
-              >
+              <div className="transform transition-all duration-1000">
                 <h1 className="mb-6 text-5xl leading-tight font-bold md:text-7xl">
                   Migrate Your Music,{' '}
                   <span className="bg-gradient-brand bg-clip-text text-transparent">
@@ -50,10 +47,16 @@ export default function Home() {
                   music collections again.
                 </p>
                 <div className="group flex flex-col items-center justify-center gap-4 sm:flex-row">
-                  <Button size="lg" variant="default" className="px-8 text-lg">
-                    Start Migration
-                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                  </Button>
+                  <Link href={session ? '/dashboard' : '/login'}>
+                    <Button
+                      size="lg"
+                      variant="default"
+                      className="px-8 text-lg"
+                    >
+                      Start Migration
+                      <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                  </Link>
                 </div>
               </div>
 
@@ -193,10 +196,12 @@ export default function Home() {
                 Join thousands of users who have successfully migrated their
                 playlists
               </p>
-              <Button size="lg" variant="secondary" className="px-8 text-lg">
-                Start Migration
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+              <Link href={session ? '/dashboard' : '/login'}>
+                <Button size="lg" variant="secondary" className="px-8 text-lg">
+                  Start Migration
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
             </div>
           </section>
         </div>
