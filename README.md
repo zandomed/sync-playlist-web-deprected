@@ -1,20 +1,24 @@
 # Sync Playlist Web
 
-Sync your playlist across platforms
+## 🎯 Project Overview
+
+**PlaylistSync** is a modern SaaS application that enables users to seamlessly migrate playlists between music streaming platforms (Spotify ↔ Apple Music). The frontend is built with **Next.js 15+**, **TypeScript**, **Tailwind CSS**, and **Shadcn/UI**, following **Clean Architecture** principles.
 
 ## Getting Started
 
 ### Prerequisites
 
 - Node.js 18+
-- npm or yarn
+- npm
+- PostgreSQL 17
+- Docker
 
 ### Installation
 
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/zandomed/sync-playlist-web.git
 cd sync-playlist-web
 ```
 
@@ -40,7 +44,18 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
+- `npm run lint:fix` - Fix ESLint issues
+- `npm run format` - Check formatting
+- `npm run format:fix` - Fix formatting
 - `npm run commit` - Create conventional commits interactively
+- `npm run docker:up` - Start Docker containers
+- `npm run docker:down` - Stop Docker containers
+- `npm run prisma:generate` - Generate Prisma client
+- `npm run prisma:migrate` - Run Prisma migrations
+- `npm run prisma:studio` - Open Prisma Studio
+- `npm run prisma:db:push` - Push database schema to the database
+- `npm run prisma:db:pull` - Pull database schema from the database
+- `npm run copy:env` - Copy example environment variables
 
 ## Contributing
 
@@ -48,39 +63,84 @@ This project uses conventional commits. Use `npm run commit` to create properly 
 
 ### Commit Types
 
-- `feat:` - New features
-- `fix:` - Bug fixes
-- `docs:` - Documentation changes
-- `style:` - Code style changes (formatting, etc.)
-- `refactor:` - Code refactoring
-- `test:` - Adding or updating tests
-- `chore:` - Maintenance tasks
+- **feat**: New feature implementation
+- **fix**: Bug fixes
+- **docs**: Documentation changes
+- **style**: Code style/formatting changes (no logic changes)
+- **refactor**: Code refactoring without adding features or fixing bugs
+- **perf**: Performance improvements
+- **test**: Adding or updating tests
+- **build**: Build system or dependency changes
+- **ci**: CI/CD configuration changes
+- **chore**: Maintenance tasks, tooling updates
+
+All commits must follow the [Conventional Commits](https://www.conventionalcommits.org/) specification:
+
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+#### Breaking Changes
+
+> [!WARNING]
+> For breaking changes, add `!` after the type and include `BREAKING CHANGE:` in the footer:
+>
+> ```bash
+> feat(api)!: restructure authentication endpoints
+>
+> BREAKING CHANGE: Auth endpoints moved from /auth/* to /api/auth/*
+> ```
 
 ## Tech Stack
+
+### Core Technologies
 
 - **Framework:** Next.js 15
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS
 - **Linting:** ESLint
 - **Formatting:** Prettier
+- **UI Components:** Shadcn/UI
+- **Database:** PostgreSQL with Prisma ORM
+- **State Management:** Zustand
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Architecture Pattern
 
-## Learn More
+```
+src/
+├── app/                     # Next.js App Router
+│   ├── api/                # Next.js API Routes (Backend)
+│   └── (pages)/            # Frontend Pages
+├── core/                    # Clean Architecture Core
+│   ├── domain/             # Entities & Interfaces
+│   ├── application/        # Use Cases
+│   └── infrastructure/     # Implementations
+├── presentation/           # UI Components & Hooks
+├── stores/                 # Zustand Global State Stores
+├── shared/                 # Utilities & Constants
+├── lib/                    # BetterAuth & Prisma Config
+├── prisma/                 # Database Schema & Migrations
+└── middleware.ts           # Authentication & Route Guards
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+> [!WARNING] This is a work in progress and not yet ready for production use.
 
 ## License
 
-MIT
+[MIT](https://github.com/zandomed/sync-playlist-web/blob/main/LICENSE)
+
+## 📚 Additional Resources
+
+### Documentation Links
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Tailwind CSS](https://tailwindcss.com/docs)
+- [Shadcn/UI Components](https://ui.shadcn.com)
+- [Spotify Web API](https://developer.spotify.com/documentation/web-api)
+- [Apple Music API](https://developer.apple.com/documentation/applemusicapi)

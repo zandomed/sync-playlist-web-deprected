@@ -4,6 +4,10 @@
   "version": "0.1.0",
   "private": false,
   "license": "MIT",
+  "repository": {
+    "url": "https://github.com/zandomed/sync-playlist-web.git",
+    "type": "git"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
