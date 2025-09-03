@@ -1,18 +1,11 @@
-'use client';
-
-import Link from 'next/link';
-
-import { SiApple, SiSpotify } from '@icons-pack/react-simple-icons';
 import { ArrowLeft } from 'lucide-react';
 
 import GoogleSignInButton from '@/presentation/components/auth/google-signin-button';
 import LoginForm from '@/presentation/components/auth/login-form';
 import { Button } from '@/presentation/components/ui/button';
-import { useAppleDevice } from '@/presentation/hooks/useAppleDevice';
+import Link from '@/presentation/components/ui/link';
 
 export default function SignInPage() {
-  const { isAppleDevice } = useAppleDevice();
-
   return (
     <div className="flex h-dvh flex-row items-center justify-center md:items-start">
       <div className="flex items-center justify-center bg-white md:h-full">
@@ -25,6 +18,8 @@ export default function SignInPage() {
                   <ArrowLeft />
                 </Button>
               </Link>
+
+              <Link href="/signup">Don&apos;t have an account? Sign up</Link>
             </div>
 
             <h1 className="mb-8 text-3xl font-normal text-black">
@@ -43,26 +38,8 @@ export default function SignInPage() {
             </div>
 
             {/* Social buttons */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="w-full">
               <GoogleSignInButton />
-              {isAppleDevice && (
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="flex items-center justify-center"
-                  onClick={() => {}}
-                >
-                  <SiApple className="text-red" />
-                </Button>
-              )}
-              <Button
-                variant="outline"
-                size="lg"
-                className="flex items-center justify-center"
-                onClick={() => {}}
-              >
-                <SiSpotify className="text-spotify-primary" />
-              </Button>
             </div>
 
             <p className="mt-8 text-center text-sm text-gray-400">

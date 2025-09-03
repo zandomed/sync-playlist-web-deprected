@@ -19,7 +19,7 @@ export default function GoogleSignInButton() {
     <Button
       variant="outline"
       size="lg"
-      className="flex items-center justify-center"
+      className="flex w-full items-center justify-center"
       onClick={handleLoginWithGoogle}
     >
       <SiGoogle />

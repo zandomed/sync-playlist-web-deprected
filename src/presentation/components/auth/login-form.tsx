@@ -1,13 +1,12 @@
 'use client';
-
-import Link from 'next/link';
-
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Checkbox } from '@radix-ui/react-checkbox';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import { authClient } from '@/lib/auth-client';
+
 import { Button } from '../ui/button';
+import { Checkbox } from '../ui/checkbox';
 import {
   Form,
   FormControl,
@@ -17,6 +16,7 @@ import {
   FormMessage,
 } from '../ui/form';
 import { Input } from '../ui/input';
+import Link from '../ui/link';
 
 const signInFormSchema = z.object({
   email: z.email().min(2).max(250),
@@ -34,9 +34,42 @@ export default function LoginForm() {
     },
   });
 
-  const handleSubmit = async (data: z.infer<typeof signInFormSchema>) => {
-    console.log(data);
+  const handleSubmit = async (formData: z.infer<typeof signInFormSchema>) => {
+    console.log(formData);
+    const { data, error } = await authClient.signIn.email({
+      email: formData.email,
+      password: formData.password,
+      rememberMe: formData.rememberMe,
+    });
+
+    if (error) {
+      console.log(error);
+
+      if (error.status === 403) {
+        return alert('Please verify your email address');
+      }
+
+      if (error.status === 400) {
+        return alert('Invalid email or password');
+      }
+
+      if (error.status === 500) {
+        return alert('Internal server error');
+      }
+
+      return alert(error.message);
+    }
+
+    if (data) {
+      // Handle successful login
+      console.log(data);
+      alert('Login successful!');
+      // Optionally, redirect the user or perform other actions
+      // For example, you could redirect to a dashboard page:
+      window.location.href = '/dashboard';
+    }
   };
+
   return (
     <div className="relative overflow-hidden">
       <Form {...form}>
@@ -104,24 +137,16 @@ export default function LoginForm() {
                 </FormItem>
               )}
             />
-
-            <Link
-              type="button"
-              href="/"
-              onClick={() => {}}
-              className="text-sm text-gray-600"
-            >
-              Forgot password?
-            </Link>
+            <Link href="/forgot-password">Forgot password?</Link>
           </div>
           {/* Sign in button */}
           <Button
             type="submit"
             size="lg"
             className="w-full"
-            disabled={form.formState.isLoading}
+            disabled={form.formState.isSubmitting || !form.formState.isValid}
           >
-            {form.formState.isLoading ? 'Signing in...' : 'Sign in'}
+            {form.formState.isSubmitting ? 'Signing in...' : 'Sign in'}
           </Button>
         </form>
       </Form>

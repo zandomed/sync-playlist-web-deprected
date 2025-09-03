@@ -1,4 +1,6 @@
 'use client';
+import Link from 'next/link';
+
 import { User } from 'better-auth';
 
 import { authClient } from '@/lib/auth-client';
@@ -8,6 +10,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
@@ -15,6 +18,7 @@ import {
 export default function UserAvatarSession({ user }: { user: User }) {
   const handleLogout = async () => {
     await authClient.signOut();
+    window.location.reload();
   };
   return (
     <DropdownMenu>
@@ -25,8 +29,16 @@ export default function UserAvatarSession({ user }: { user: User }) {
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuItem>Dashboard</DropdownMenuItem>
-        <DropdownMenuItem>Profile</DropdownMenuItem>
+        <DropdownMenuLabel className="select-none">
+          Hi, {user.name}
+        </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem asChild>
+          <Link href="/dashboard">Dashboard</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link href="/profile">Profile</Link>
+        </DropdownMenuItem>
 
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
