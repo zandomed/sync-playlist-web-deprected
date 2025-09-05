@@ -9,6 +9,12 @@ export const auth = betterAuth({
     provider: 'postgresql',
   }),
   plugins: [nextCookies()],
+  account: {
+    accountLinking: {
+      enabled: true,
+      allowDifferentEmails: false,
+    },
+  },
   emailAndPassword: {
     enabled: true,
     autoSignIn: false,

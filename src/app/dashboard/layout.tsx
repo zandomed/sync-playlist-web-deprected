@@ -1,4 +1,9 @@
+import { headers } from 'next/headers';
+
 import type { Metadata } from 'next';
+
+import { auth } from '@/lib/auth';
+import UserAvatarSession from '@/presentation/components/auth/user-avatar-session';
 
 export const metadata: Metadata = {
   title: 'Dashboard',
@@ -9,10 +14,21 @@ type DashboardLayoutProps = Readonly<{
   children: React.ReactNode;
 }>;
 
-export default function DashboardLayout({ children }: DashboardLayoutProps) {
+export default async function DashboardLayout({
+  children,
+}: DashboardLayoutProps) {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
   return (
     <div className="grid h-dvh max-h-dvh w-full grid-cols-6">
-      <aside className="col-span-1 border-r border-black/20">hola</aside>
+      <aside className="col-span-1 border-r border-black/20 p-4">
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl font-bold">Sync Playlist</h1>
+          <UserAvatarSession user={session?.user} />
+        </div>
+      </aside>
       <main className="col-span-5">{children}</main>
     </div>
   );

@@ -18,7 +18,7 @@ import {
 export default function UserAvatarSession({ user }: { user: User }) {
   const handleLogout = async () => {
     await authClient.signOut();
-    window.location.reload();
+    window.location.href = '/';
   };
   return (
     <DropdownMenu>
