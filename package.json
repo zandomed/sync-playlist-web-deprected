@@ -9,7 +9,7 @@
     "type": "git"
   },
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev -H 127.0.0.1 --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
