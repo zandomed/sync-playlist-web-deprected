@@ -47,7 +47,6 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 - `npm run lint:fix` - Fix ESLint issues
 - `npm run format` - Check formatting
 - `npm run format:fix` - Fix formatting
-- `npm run commit` - Create conventional commits interactively
 - `npm run docker:up` - Start Docker containers
 - `npm run docker:down` - Stop Docker containers
 - `npm run prisma:generate` - Generate Prisma client
