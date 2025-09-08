@@ -28,7 +28,13 @@ cd sync-playlist-web
 npm install
 ```
 
-3. Run the development server:
+3. Install migrations
+
+```
+npm run prisma:db:push
+```
+
+4. Run the development server:
 
 ```bash
 npm run dev
