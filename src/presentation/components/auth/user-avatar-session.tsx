@@ -25,7 +25,7 @@ export default function UserAvatarSession({ user }: { user: User }) {
       <DropdownMenuTrigger asChild>
         <Avatar className="cursor-pointer">
           <AvatarImage src={user.image ?? undefined} />
-          <AvatarFallback>{user.name.at(0)}</AvatarFallback>
+          <AvatarFallback>{user.name.at(0)?.toUpperCase()}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
