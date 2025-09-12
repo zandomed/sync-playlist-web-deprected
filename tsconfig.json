@@ -19,7 +19,11 @@
       }
     ],
     "paths": {
-      "@/generated/*": ["./generated/*"],
+      "@gen/*": ["./generated/*"],
+      "@core/*": ["./src/core/*"],
+      "@infra/*": ["./src/infrastructure/*"],
+      "@presentation/*": ["./src/presentation/*"],
+      "@shared/*": ["./src/shared/*"],
       "@/*": ["./src/*"]
     }
   },

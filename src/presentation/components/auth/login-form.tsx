@@ -3,20 +3,19 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { authClient } from '@/lib/auth-client';
-
-import { Button } from '../ui/button';
-import { Checkbox } from '../ui/checkbox';
+import { auth } from '@infra/auth/client';
 import {
+  Button,
+  Link,
+  Checkbox,
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from '../ui/form';
-import { Input } from '../ui/input';
-import Link from '../ui/link';
+  Input,
+} from '@presentation/components/ui';
 
 const signInFormSchema = z.object({
   email: z.email().min(2).max(250),
@@ -36,7 +35,7 @@ export default function LoginForm() {
 
   const handleSubmit = async (formData: z.infer<typeof signInFormSchema>) => {
     console.log(formData);
-    const { data, error } = await authClient.signIn.email({
+    const { data, error } = await auth.signIn.email({
       email: formData.email,
       password: formData.password,
       rememberMe: formData.rememberMe,

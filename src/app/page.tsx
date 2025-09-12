@@ -9,10 +9,9 @@ import {
 } from '@icons-pack/react-simple-icons';
 import { ArrowRight } from 'lucide-react';
 
-import { auth } from '@/lib/auth';
-import Footer from '@/presentation/components/footer';
-import Header from '@/presentation/components/header';
-import { Button } from '@/presentation/components/ui/button';
+import { auth } from '@infra/auth/server';
+import { Footer, Header } from '@presentation/components/layout';
+import { Button } from '@presentation/components/ui';
 
 export default async function Home() {
   const session = await auth.api.getSession({

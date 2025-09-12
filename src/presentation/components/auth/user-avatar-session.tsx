@@ -3,21 +3,22 @@ import Link from 'next/link';
 
 import { User } from 'better-auth';
 
-import { authClient } from '@/lib/auth-client';
-
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { auth } from '@infra/auth/client';
 import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '../ui/dropdown-menu';
+} from '@presentation/components/ui';
 
 export default function UserAvatarSession({ user }: { user: User }) {
   const handleLogout = async () => {
-    await authClient.signOut();
+    await auth.signOut();
     window.location.href = '/';
   };
   return (

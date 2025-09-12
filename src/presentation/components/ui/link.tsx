@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react';
 
 import NLink, { LinkProps as NLinkProps } from 'next/link';
 
-import { cn } from '@/lib/utils';
+import { cn } from '@presentation/utils';
 
 type LinkProps = NLinkProps &
   PropsWithChildren & {
@@ -10,7 +10,7 @@ type LinkProps = NLinkProps &
     className?: string;
   };
 
-export default function Link({ className, children, ...props }: LinkProps) {
+function Link({ className, children, ...props }: LinkProps) {
   return (
     <NLink
       type="button"
@@ -24,3 +24,5 @@ export default function Link({ className, children, ...props }: LinkProps) {
     </NLink>
   );
 }
+
+export { Link };

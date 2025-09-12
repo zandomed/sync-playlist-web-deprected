@@ -2,7 +2,8 @@ import { betterAuth } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
 import { nextCookies } from 'better-auth/next-js';
 
-import prisma from '@/lib/prisma';
+import prisma from '@infra/database/prisma/client';
+import { env } from '@shared/config/env';
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
@@ -27,13 +28,13 @@ export const auth = betterAuth({
     google: {
       prompt: 'select_account consent',
       accessType: 'offline',
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      clientId: env.GOOGLE_CLIENT_ID,
+      clientSecret: env.GOOGLE_CLIENT_SECRET,
       refreshAccessTokens: true,
     },
     spotify: {
-      clientId: process.env.SPOTIFY_CLIENT_ID as string,
-      clientSecret: process.env.SPOTIFY_CLIENT_SECRET as string,
+      clientId: env.SPOTIFY_CLIENT_ID,
+      clientSecret: env.SPOTIFY_CLIENT_SECRET,
       scope: [
         'user-read-email',
         'playlist-read-private',

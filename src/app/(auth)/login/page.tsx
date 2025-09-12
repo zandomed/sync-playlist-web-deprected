@@ -1,9 +1,7 @@
 import { ArrowLeft } from 'lucide-react';
 
-import GoogleSignInButton from '@/presentation/components/auth/google-signin-button';
-import LoginForm from '@/presentation/components/auth/login-form';
-import { Button } from '@/presentation/components/ui/button';
-import Link from '@/presentation/components/ui/link';
+import { GoogleSignInButton, LoginForm } from '@presentation/components/auth';
+import { Button, Link } from '@presentation/components/ui';
 
 export default function SignInPage() {
   return (

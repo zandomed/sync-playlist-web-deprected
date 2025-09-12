@@ -3,10 +3,9 @@ import { headers } from 'next/headers';
 import { User } from 'better-auth';
 import { Music } from 'lucide-react';
 
-import { auth } from '@/lib/auth';
-
-import UserAvatarSession from './auth/user-avatar-session';
-import { Badge } from './ui/badge';
+import { auth } from '@infra/auth/server';
+import { UserAvatarSession } from '@presentation/components/auth';
+import { Badge } from '@presentation/components/ui/badge';
 
 export default async function Header() {
   const session = await auth.api.getSession({
