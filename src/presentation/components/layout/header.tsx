@@ -1,6 +1,5 @@
 import { headers } from 'next/headers';
 
-import { User } from 'better-auth';
 import { Music } from 'lucide-react';
 
 import { auth } from '@infra/auth/server';
@@ -23,7 +22,7 @@ export default async function Header() {
         </div>
         <div className="hidden items-center space-x-4 md:flex">
           <Badge>Beta</Badge>
-          {session && <UserAvatarSession user={session.user as User} />}
+          {session && <UserAvatarSession user={session.user} />}
         </div>
       </div>
     </header>

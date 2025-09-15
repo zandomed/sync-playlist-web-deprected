@@ -1,8 +1,7 @@
 'use client';
 import Link from 'next/link';
 
-import { User } from 'better-auth';
-
+import { User } from '@core/entities/User';
 import { auth } from '@infra/auth/client';
 import {
   Avatar,
@@ -16,11 +15,18 @@ import {
   DropdownMenuTrigger,
 } from '@presentation/components/ui';
 
-export default function UserAvatarSession({ user }: { user: User }) {
+type UserAvatarSessionProps = {
+  user?: User;
+};
+
+export default function UserAvatarSession({ user }: UserAvatarSessionProps) {
   const handleLogout = async () => {
     await auth.signOut();
     window.location.href = '/';
   };
+
+  if (!user) return null;
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
