@@ -1,31 +1,38 @@
 'use client';
 import Link from 'next/link';
 
-import { User } from 'better-auth';
-
-import { authClient } from '@/lib/auth-client';
-
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { User } from '@core/entities/User';
+import { auth } from '@infra/auth/client';
 import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '../ui/dropdown-menu';
+} from '@presentation/components/ui';
 
-export default function UserAvatarSession({ user }: { user: User }) {
+type UserAvatarSessionProps = {
+  user?: User;
+};
+
+export default function UserAvatarSession({ user }: UserAvatarSessionProps) {
   const handleLogout = async () => {
-    await authClient.signOut();
+    await auth.signOut();
     window.location.href = '/';
   };
+
+  if (!user) return null;
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Avatar className="cursor-pointer">
           <AvatarImage src={user.image ?? undefined} />
-          <AvatarFallback>{user.name.at(0)}</AvatarFallback>
+          <AvatarFallback>{user.name.at(0)?.toUpperCase()}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent>

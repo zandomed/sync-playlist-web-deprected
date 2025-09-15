@@ -6,6 +6,7 @@
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
+    "experimentalDecorators": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "bundler",
@@ -19,7 +20,11 @@
       }
     ],
     "paths": {
-      "@/generated/*": ["./generated/*"],
+      "@gen/*": ["./generated/*"],
+      "@core/*": ["./src/core/*"],
+      "@infra/*": ["./src/infrastructure/*"],
+      "@presentation/*": ["./src/presentation/*"],
+      "@shared/*": ["./src/shared/*"],
       "@/*": ["./src/*"]
     }
   },

@@ -3,18 +3,17 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { authClient } from '@/lib/auth-client';
-
-import { Button } from '../ui/button';
+import { auth } from '@infra/auth/client';
 import {
+  Button,
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from '../ui/form';
-import { Input } from '../ui/input';
+  Input,
+} from '@presentation/components/ui';
 
 const signUpFormSchema = z
   .object({
@@ -48,7 +47,7 @@ export default function RegisterForm() {
 
   const handleSubmit = async (formData: z.infer<typeof signUpFormSchema>) => {
     console.log(formData);
-    const { data, error } = await authClient.signUp.email({
+    const { data, error } = await auth.signUp.email({
       email: formData.email,
       password: formData.password,
       name: `${formData.name.trim()} ${formData.lastName.trim()}`,

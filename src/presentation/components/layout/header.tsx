@@ -1,12 +1,10 @@
 import { headers } from 'next/headers';
 
-import { User } from 'better-auth';
 import { Music } from 'lucide-react';
 
-import { auth } from '@/lib/auth';
-
-import UserAvatarSession from './auth/user-avatar-session';
-import { Badge } from './ui/badge';
+import { auth } from '@infra/auth/server';
+import { UserAvatarSession } from '@presentation/components/auth';
+import { Badge } from '@presentation/components/ui/badge';
 
 export default async function Header() {
   const session = await auth.api.getSession({
@@ -24,7 +22,7 @@ export default async function Header() {
         </div>
         <div className="hidden items-center space-x-4 md:flex">
           <Badge>Beta</Badge>
-          {session && <UserAvatarSession user={session.user as User} />}
+          {session && <UserAvatarSession user={session.user} />}
         </div>
       </div>
     </header>

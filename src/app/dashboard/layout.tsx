@@ -2,8 +2,8 @@ import { headers } from 'next/headers';
 
 import type { Metadata } from 'next';
 
-import { auth } from '@/lib/auth';
-import UserAvatarSession from '@/presentation/components/auth/user-avatar-session';
+import { auth } from '@infra/auth/server';
+import UserAvatarSession from '@presentation/components/auth/user-avatar-session';
 
 export const metadata: Metadata = {
   title: 'Dashboard',

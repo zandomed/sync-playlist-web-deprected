@@ -1,14 +1,12 @@
 'use client';
-
 import { SiGoogle } from '@icons-pack/react-simple-icons';
 
-import { authClient } from '@/lib/auth-client';
-
-import { Button } from '../ui/button';
+import { auth } from '@infra/auth/client';
+import { Button } from '@presentation/components/ui/button';
 
 export default function GoogleSignInButton() {
   const handleLoginWithGoogle = async () => {
-    const data = await authClient.signIn.social({
+    const data = await auth.signIn.social({
       provider: 'google',
     });
 

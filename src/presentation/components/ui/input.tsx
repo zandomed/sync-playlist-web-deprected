@@ -1,8 +1,9 @@
+'use client';
 import { ComponentProps, useMemo, useState } from 'react';
 
 import { Eye, EyeOff } from 'lucide-react';
 
-import { cn } from '@/lib/utils';
+import { cn } from '@shared/utils';
 
 function Input({ className, type, ...props }: ComponentProps<'input'>) {
   const [showPassword, setShowPassword] = useState(false);
