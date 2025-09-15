@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react';
 
 import NLink, { LinkProps as NLinkProps } from 'next/link';
 
-import { cn } from '@presentation/utils';
+import { cn } from '@shared/utils';
 
 type LinkProps = NLinkProps &
   PropsWithChildren & {
