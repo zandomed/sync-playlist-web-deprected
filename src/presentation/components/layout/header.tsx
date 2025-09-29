@@ -1,16 +1,9 @@
-import { headers } from 'next/headers';
-
 import { Music } from 'lucide-react';
 
-import { auth } from '@infra/auth/server';
 import { UserAvatarSession } from '@presentation/components/auth';
 import { Badge } from '@presentation/components/ui/badge';
 
 export default async function Header() {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-
   return (
     <header className="fixed top-0 z-50 w-full border-b-2 border-b-black/10 bg-white">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
@@ -22,7 +15,7 @@ export default async function Header() {
         </div>
         <div className="hidden items-center space-x-4 md:flex">
           <Badge>Beta</Badge>
-          {session && <UserAvatarSession user={session.user} />}
+          <UserAvatarSession user={null} />
         </div>
       </div>
     </header>

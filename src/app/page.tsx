@@ -1,4 +1,3 @@
-import { headers } from 'next/headers';
 import Link from 'next/link';
 
 import {
@@ -9,15 +8,10 @@ import {
 } from '@icons-pack/react-simple-icons';
 import { ArrowRight } from 'lucide-react';
 
-import { auth } from '@infra/auth/server';
 import { Footer, Header } from '@presentation/components/layout';
 import { Button } from '@presentation/components/ui';
 
 export default async function Home() {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-
   return (
     <>
       <Header />
@@ -39,7 +33,7 @@ export default async function Home() {
                   music collections again.
                 </p>
                 <div className="group flex flex-col items-center justify-center gap-4 sm:flex-row">
-                  <Link href={session ? '/dashboard' : '/login'}>
+                  <Link href={false ? '/dashboard' : '/login'}>
                     <Button
                       size="lg"
                       variant="default"
@@ -132,7 +126,7 @@ export default async function Home() {
                 Join thousands of users who have successfully migrated their
                 playlists
               </p>
-              <Link href={session ? '/dashboard' : '/login'}>
+              <Link href={false ? '/dashboard' : '/login'}>
                 <Button size="lg" variant="secondary" className="px-8 text-lg">
                   Start Migration
                   <ArrowRight className="ml-2 h-5 w-5" />

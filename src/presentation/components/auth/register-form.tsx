@@ -3,7 +3,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { auth } from '@infra/auth/client';
 import {
   Button,
   Form,
@@ -47,38 +46,6 @@ export default function RegisterForm() {
 
   const handleSubmit = async (formData: z.infer<typeof signUpFormSchema>) => {
     console.log(formData);
-    const { data, error } = await auth.signUp.email({
-      email: formData.email,
-      password: formData.password,
-      name: `${formData.name.trim()} ${formData.lastName.trim()}`,
-    });
-
-    if (error) {
-      console.log(error);
-
-      if (error.status === 403) {
-        return alert('Please verify your email address');
-      }
-
-      if (error.status === 400) {
-        return alert('Invalid email or password');
-      }
-
-      if (error.status === 500) {
-        return alert('Internal server error');
-      }
-
-      return alert(error.message);
-    }
-
-    if (data) {
-      // Handle successful registration
-      console.log(data);
-      alert('Registration successful!');
-      // Optionally, redirect the user or perform other actions
-      // For example, you could redirect to a login page:
-      window.location.href = '/login';
-    }
   };
 
   return (
