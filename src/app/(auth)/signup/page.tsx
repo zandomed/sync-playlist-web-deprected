@@ -3,6 +3,7 @@ import { ArrowLeft } from 'lucide-react';
 import {
   GoogleSignInButton,
   RegisterForm,
+  SpotifySignInButton,
 } from '@/presentation/components/auth';
 import { Button, Link } from '@/presentation/components/ui';
 
@@ -39,8 +40,9 @@ export default function SignUpPage() {
             </div>
 
             {/* Social buttons */}
-            <div className="w-full">
+            <div className="flex w-full flex-col gap-4 md:grid md:grid-cols-2">
               <GoogleSignInButton />
+              <SpotifySignInButton />
             </div>
 
             <p className="mt-8 text-center text-sm text-gray-400">

@@ -2,3 +2,4 @@ export { default as GoogleSignInButton } from '@/presentation/components/auth/go
 export { default as LoginForm } from '@/presentation/components/auth/login-form';
 export { default as RegisterForm } from '@/presentation/components/auth/register-form';
 export { default as UserAvatarSession } from '@/presentation/components/auth/user-avatar-session';
+export { default as SpotifySignInButton } from '@/presentation/components/auth/spotify-signin-button';
