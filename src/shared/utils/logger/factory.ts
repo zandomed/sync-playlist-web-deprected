@@ -1,5 +1,3 @@
-import { env } from '@shared/config/env';
-
 import { Logger } from './logger';
 import { Log } from './model';
 
@@ -49,13 +47,14 @@ export class LoggerFactory {
    * Logger basado en variables de entorno
    */
   static createFromEnvironment(): Logger {
-    const environment = env.NODE_ENV || 'development';
+    // TODO: Is needed fix this
+    const environment = 'development';
 
     switch (environment) {
-      case 'production':
-        return this.createProductionLogger();
-      case 'test':
-        return this.createTestLogger();
+      // case 'production':
+      //   return this.createProductionLogger();
+      // case 'test':
+      //   return this.createTestLogger();
       default:
         return this.createDevelopmentLogger();
     }
